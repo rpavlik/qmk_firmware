@@ -18,16 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "quantum.h"
 
-#include <stdint.h>
-#include <stdbool.h>
-#include "keycode.h"
-#include "action.h"
-#include "action_macro.h"
-#include "report.h"
-#include "print.h"
-#include "debug.h"
-#include "keymap.h"
-
 
 /*         ,-----------------------------------------------.
  *         |F13|F14|F15|F16|F17|F18|F19|F20|F21|F22|F23|F24|

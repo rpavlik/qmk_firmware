@@ -32,7 +32,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 static void matrix_make(uint8_t code);
 static void matrix_break(uint8_t code);
-
+static void matrix_clear(void);
 
 /*
  * Matrix Array usage:
@@ -67,23 +67,6 @@ static uint8_t matrix[MATRIX_ROWS];
 #define F7             (0x83)
 #define PRINT_SCREEN   (0xFC)
 #define PAUSE          (0xFE)
-
-__attribute__ ((weak))
-void matrix_init_kb(void) {
-    matrix_init_user();
-}
-
-__attribute__ ((weak))
-void matrix_scan_kb(void) {
-    matrix_scan_user();
-}
-
-__attribute__ ((weak))
-void matrix_init_user(void) {
-}
-
-__attribute__ ((weak))
-void matrix_scan_user(void) { }
 
 void matrix_init(void)
 {
@@ -187,9 +170,6 @@ uint8_t matrix_scan(void)
         E0_7E_E0,
         E0_7E_E0_F0,
     } state = INIT;
-
-
-    is_modified = false;
 
     // 'pseudo break code' hack
     if (matrix_is_on(ROW(PAUSE), COL(PAUSE))) {
@@ -436,7 +416,7 @@ inline static void matrix_break(uint8_t code) {
     }
 }
 
-void matrix_clear(void) {
+inline static void matrix_clear(void) {
     for (uint8_t i=0; i < MATRIX_ROWS; i++) matrix[i] = 0x00;
 }
 

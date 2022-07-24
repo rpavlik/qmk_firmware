@@ -1,10 +1,11 @@
 # MCU name
 
 MCU = RP2040
-BOARD = RP_PICO_RP2040
-MCU_LDSCRIPT = RP2040_FLASH.ld
+# BOARD = RP_PICO_RP2040
+BOARD = GENERIC_RP_RP2040
+# MCU_LDSCRIPT = RP2040_FLASH_TIMECRIT.ld
 # Bootloader selection
-BOOTLOADER = tinyuf2
+BOOTLOADER = rp2040
 
 # Build Options
 #   change yes to no to disable
