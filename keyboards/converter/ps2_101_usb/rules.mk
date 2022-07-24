@@ -1,8 +1,8 @@
 # MCU name
-# MCU = atmega32u4
 
+MCU = RP2040
 BOARD = RP_PICO_RP2040
-
+MCU_LDSCRIPT = RP2040_FLASH.ld
 # Bootloader selection
 BOOTLOADER = tinyuf2
 

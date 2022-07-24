@@ -23,7 +23,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define DEVICE_VER      0x0100
 #define MANUFACTURER    QMK/Ryan Pavlik
 #define PRODUCT         101-key PS/2-USB Keyboard Converter
-#define DESCRIPTION     convert PS/2 keyboard to USB mapping Caps Lock to the Windows key
 
 
 /* matrix size */
@@ -38,7 +37,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 
 //#define NO_SUSPEND_POWER_DOWN
-
+#if defined(__arm__)
+#define PS2_CLOCK_PIN   GP4
+#define PS2_DATA_PIN    GP5
+#else
 /*
  * PS/2 USART configuration for ATMega32U4
  */
@@ -108,4 +110,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifdef PS2_USE_BUSYWAIT
 #define PS2_CLOCK_PIN   D1
 #define PS2_DATA_PIN    D0
+#endif
 #endif
