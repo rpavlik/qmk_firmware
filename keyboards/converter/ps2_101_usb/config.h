@@ -18,6 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include "config_common.h"
+
 #define VENDOR_ID       0xFEED
 #define PRODUCT_ID      0x6535
 #define DEVICE_VER      0x0100
@@ -38,8 +40,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 //#define NO_SUSPEND_POWER_DOWN
 #if defined(__arm__)
-#define PS2_CLOCK_PIN   GP4
-#define PS2_DATA_PIN    GP5
+#define PS2_CLOCK_PIN   GP10
+#define PS2_DATA_PIN    GP11
 #else
 /*
  * PS/2 USART configuration for ATMega32U4

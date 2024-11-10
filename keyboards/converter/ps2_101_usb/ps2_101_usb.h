@@ -18,6 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "quantum.h"
 
+#define XXX KC_NO
+
 
 /*         ,-----------------------------------------------.
  *         |F13|F14|F15|F16|F17|F18|F19|F20|F21|F22|F23|F24|

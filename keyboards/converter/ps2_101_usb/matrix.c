@@ -54,7 +54,7 @@ static void matrix_clear(void);
  *   +---------+
  *
  * Exceptions:
- * 0x83:    F7(0x83) This is a normal code but beyond  0x7F.
+ * 0x83:    KEY_F7(0x83) This is a normal code but beyond  0x7F.
  * 0xFC:    PrintScreen
  * 0xFE:    Pause
  */
@@ -64,7 +64,7 @@ static uint8_t matrix[MATRIX_ROWS];
 #define COL(code) (code & 0x07)
 
 // matrix positions for exceptional keys
-#define F7             (0x83)
+#define KEY_F7             (0x83)
 #define PRINT_SCREEN   (0xFC)
 #define PAUSE          (0xFE)
 
@@ -154,11 +154,11 @@ uint8_t matrix_scan(void)
     // scan code reading states
     static enum {
         INIT,
-        F0,
-        E0,
+        STATE_F0,
+        STATE_E0,
         E0_F0,
         // Pause
-        E1,
+        STATE_E1,
         E1_14,
         E1_14_77,
         E1_14_77_E1,
@@ -185,16 +185,16 @@ uint8_t matrix_scan(void)
             case INIT:
                 switch (code) {
                     case 0xE0:
-                        state = E0;
+                        state = STATE_E0;
                         break;
                     case 0xF0:
-                        state = F0;
+                        state = STATE_F0;
                         break;
                     case 0xE1:
-                        state = E1;
+                        state = STATE_E1;
                         break;
-                    case 0x83:  // F7
-                        matrix_make(F7);
+                    case 0x83:  // KEY_F7
+                        matrix_make(KEY_F7);
                         state = INIT;
                         break;
                     case 0x84:  // Alt'd PrintScreen
@@ -224,7 +224,7 @@ uint8_t matrix_scan(void)
                         state = INIT;
                 }
                 break;
-            case E0:    // E0-Prefixed
+            case STATE_E0:    // E0-Prefixed
                 switch (code) {
                     case 0x12:  // to be ignored
                     case 0x59:  // to be ignored
@@ -247,10 +247,10 @@ uint8_t matrix_scan(void)
                         state = INIT;
                 }
                 break;
-            case F0:    // Break code
+            case STATE_F0:    // Break code
                 switch (code) {
-                    case 0x83:  // F7
-                        matrix_break(F7);
+                    case 0x83:  // KEY_F7
+                        matrix_break(KEY_F7);
                         state = INIT;
                         break;
                     case 0x84:  // Alt'd PrintScreen
@@ -291,7 +291,7 @@ uint8_t matrix_scan(void)
                 }
                 break;
             // following are states of Pause
-            case E1:
+            case STATE_E1:
                 switch (code) {
                     case 0x14:
                         state = E1_14;

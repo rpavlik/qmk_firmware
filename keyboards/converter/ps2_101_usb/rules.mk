@@ -20,5 +20,6 @@ BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality
 RGBLIGHT_ENABLE = no        # Enable keyboard RGB underglow
 AUDIO_ENABLE = no           # Audio output
 CUSTOM_MATRIX = yes
-
+# PS2_USE_INT = yes
+PS2_USE_BUSYWAIT = yes
 SRC = matrix.c led.c
